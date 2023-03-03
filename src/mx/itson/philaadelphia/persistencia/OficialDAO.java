@@ -15,7 +15,10 @@ import org.hibernate.Transaction;
  */
 public class OficialDAO {
 
-    // Método que obtiene una lista de todos los oficiales.
+    /**
+     * Método para obtener la lista de oficiales
+     * @return la lista completa de oficiales
+     */
     public List<Oficial> obtenerTodos() {
         List<Oficial> oficiales = new ArrayList<>();
         try {
@@ -30,7 +33,13 @@ public class OficialDAO {
         return oficiales;
     }
 
-    // Método que guarda un nuevo oficial en la base de datos.
+    /**
+     * Método que guarda al nuevo oficial en la base de datos
+     * @param nombre nombre del oficial
+     * @param telefono telefono del oficial
+     * @return true si logra crear el registro
+     */
+     
     public boolean guardar(String nombre, String telefono) {
         boolean resultado = false;
 
@@ -53,7 +62,10 @@ public class OficialDAO {
         return resultado;
     }
 
-    // Método que elimina un oficial de la base de datos.
+    /**
+     * Método que elimina al oficial de la base de datos a partir de su id
+     * @param id id del oficial a eliminar
+     */
     public void eliminarOficial(int id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

@@ -111,7 +111,16 @@ public class AgregarConductor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-   
+     try {
+        ConductorDAO c = new ConductorDAO();
+        String nombre = txtNombre.getText();
+        String numLicencia = txtNumLicencia.getText();
+        c.guardar(nombre, numLicencia, new Date());
+        JOptionPane.showMessageDialog(null, "El conductor ha sido agregado exitosamente.");
+        
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Ocurrió un error al agregar el conductor: " + ex.getMessage());
+    }
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed

@@ -20,7 +20,7 @@
         <property name="hibernate.connection.password">
             guaymas
         </property>
-        <mapping class="mx.itson.filadelfia.entidades.Oficial"/> 
-        <mapping class="mx.itson.filadelfia.entidades.Conductor"/>           
+        <mapping class="mx.itson.philaadelphia.entidades.Oficial"/> 
+        <mapping class="mx.itson.philaadelphia.entidades.Conductor"/>           
     </session-factory>
 </hibernate-configuration>
