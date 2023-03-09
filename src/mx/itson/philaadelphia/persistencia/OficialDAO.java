@@ -19,7 +19,7 @@ public class OficialDAO {
      * Método para obtener la lista de oficiales
      * @return la lista completa de oficiales
      */
-    public List<Oficial> obtenerTodos() {
+    public static List<Oficial> obtenerTodos() {
         List<Oficial> oficiales = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();

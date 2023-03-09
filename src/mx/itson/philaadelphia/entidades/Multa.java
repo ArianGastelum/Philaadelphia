@@ -1,11 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.itson.philaadelphia.entidades;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Representa una multa de tránsito.
@@ -16,13 +20,32 @@ import java.util.Date;
  * 
  * @author Arian Gastelum
  */
+@Entity
 public class Multa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int folio;
+    private String folio;
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private String motivo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="idConductor")
     private Conductor conductor;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="idOficial")
     private Oficial oficial;
+
+    public Multa() {}
+
+    public Multa(String folio, Date fecha, String motivo, Conductor conductor, Oficial oficial) {
+        this.folio = folio;
+        this.fecha = fecha;
+        this.motivo = motivo;
+        this.conductor = conductor;
+        this.oficial = oficial;
+    }
 
     /**
      * @return el ID de la multa
@@ -41,14 +64,14 @@ public class Multa {
     /**
      * @return el folio de la multa
      */
-    public int getFolio() {
+    public String getFolio() {
         return folio;
     }
 
     /**
      * @param folio el folio de la multa a establecer
      */
-    public void setFolio(int folio) {
+    public void setFolio(String folio) {
         this.folio = folio;
     }
 
@@ -108,3 +131,5 @@ public class Multa {
         this.oficial = oficial;
     }
 }
+
+    

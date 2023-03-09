@@ -26,7 +26,7 @@ public class ConductorDAO {
      * @return Una lista de objetos de tipo Conductor que contiene todos los 
      * conductores en la base de datos.
      */ 
-    public List <Conductor> obtenerTodos(){
+    public static List <Conductor> obtenerTodos(){
     List <Conductor> conductores = new ArrayList<>();
     try{
         Session session = HibernateUtil.getSessionFactory().openSession(); 
@@ -166,4 +166,5 @@ public void eliminarConductor(int id) {
     return resultado;
     }
    
+    
     }

@@ -21,6 +21,7 @@
             guaymas
         </property>
         <mapping class="mx.itson.philaadelphia.entidades.Oficial"/> 
-        <mapping class="mx.itson.philaadelphia.entidades.Conductor"/>           
+        <mapping class="mx.itson.philaadelphia.entidades.Conductor"/>    
+        <mapping class="mx.itson.philaadelphia.entidades.Multa"/>      
     </session-factory>
 </hibernate-configuration>
