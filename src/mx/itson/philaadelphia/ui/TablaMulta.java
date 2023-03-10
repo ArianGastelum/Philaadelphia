@@ -61,6 +61,7 @@ public class TablaMulta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMultas = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         JmenuAgregar = new javax.swing.JMenuItem();
@@ -92,6 +93,13 @@ public class TablaMulta extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Opciones");
 
         JmenuAgregar.setText("Agregar");
@@ -115,7 +123,9 @@ public class TablaMulta extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
+                .addComponent(btnEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEliminar)
                 .addGap(113, 113, 113))
         );
@@ -125,7 +135,9 @@ public class TablaMulta extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnEditar))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -159,6 +171,19 @@ public class TablaMulta extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+         int renglon = tblMultas.getSelectedRow();
+       if(renglon != -1){
+       int idMulta = Integer.parseInt(tblMultas.getModel().getValueAt(renglon, 0).toString());
+       AgregarMulta dialog = new AgregarMulta(this, true);
+       
+       dialog.setVisible(true);
+       cargarTabla(); 
+       }else{
+           JOptionPane.showMessageDialog(this, "Ocurrió un error, seleccione un conductor", "Error al seleccionar", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +222,7 @@ public class TablaMulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JmenuAgregar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

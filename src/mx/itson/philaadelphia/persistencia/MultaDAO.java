@@ -36,16 +36,7 @@ public class MultaDAO {
         return multas;
     }
     
-    public Multa obtenerPorId(int id) {
-    Multa multa = null;
-    try {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        multa = session.get(Multa.class, id);
-    } catch(Exception ex) {
-        System.out.println("Ocurrió un error: " + ex);
-    }
-    return multa;
-}
+    
 public static boolean guardarMulta(String folio, String motivo, Date fecha, Conductor conductor, Oficial oficial){
     boolean resultado = false;    
     try{
@@ -86,5 +77,37 @@ public static boolean eliminarMulta(int idMulta) {
         }
         return resultado;
     }
+public static boolean editarMulta(int idMulta, String folio, String motivo, Date fecha, Conductor conductor, Oficial oficial) {
+    boolean resultado = false;
+    try {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        Multa multa = session.get(Multa.class, idMulta);
+        if (multa != null) {
+            multa.setFolio(folio);
+            multa.setMotivo(motivo);
+            multa.setFecha(fecha);
+            multa.setConductor(conductor);
+            multa.setOficial(oficial);
+            session.update(multa);
+            tx.commit();
+            resultado = true;
+        }
+    } catch (HibernateException ex) {
+        System.err.println("Ocurrio un error: " + ex.getMessage());
+    }
+    return resultado;
+}
+ public static Multa obtenerPorId(int id){
+        Multa multa = null;
+        try{
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                multa = session.get(Multa.class, id);
+        }catch(HibernateException ex){
+                System.err.println("Ocurrio un error: " + ex.getMessage());
+        }
+    return multa;
+    }
+
 
 }

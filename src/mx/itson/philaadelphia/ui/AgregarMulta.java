@@ -19,6 +19,7 @@ import mx.itson.philaadelphia.persistencia.OficialDAO;
  * @author Arian Gastelum
  */
 public class AgregarMulta extends javax.swing.JDialog {
+    int id;
 
     /**
      * Creates new form AgregarMulta
@@ -26,7 +27,16 @@ public class AgregarMulta extends javax.swing.JDialog {
     public AgregarMulta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.id = id;
+        if(id != 0){
+            Multa multa = MultaDAO.obtenerPorId(id);
+            txtFolio.setText(multa.getFolio());
+            txtMotivo.setText(multa.getMotivo());
+            cbConductor.setSelectedItem(multa.getConductor().getNombre());
+            cbOficial.setSelectedItem(multa.getOficial().getNombre());
     }
+    }   
+        
  public void cargarConductores() {
     List<Conductor> conductores = ConductorDAO.obtenerTodos();
     for (Conductor c : conductores) {
@@ -58,6 +68,8 @@ public void cargarOficiales() {
         txtMotivo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -76,10 +88,6 @@ public void cargarOficiales() {
             }
         });
 
-        txtFolio.setText("jTextField1");
-
-        txtMotivo.setText("jTextField3");
-
         jLabel4.setText("Agregar Multa");
 
         btnAgregar.setText("Agregar");
@@ -88,6 +96,10 @@ public void cargarOficiales() {
                 btnAgregarActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Conductor:");
+
+        jLabel5.setText("Oficial:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,9 +116,12 @@ public void cargarOficiales() {
                                 .addComponent(txtMotivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                 .addComponent(txtFolio, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
                                 .addGap(75, 75, 75)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
                                     .addComponent(btnAgregar)
                                     .addComponent(cbOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
@@ -126,7 +141,11 @@ public void cargarOficiales() {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,8 +231,10 @@ try {
     private javax.swing.JComboBox<Conductor> cbConductor;
     private javax.swing.JComboBox<Oficial> cbOficial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtFolio;
     private javax.swing.JTextField txtMotivo;
     // End of variables declaration//GEN-END:variables
