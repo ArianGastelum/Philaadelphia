@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mx.itson.philaadelphia.persistencia;
 
 import java.util.ArrayList;
@@ -19,10 +16,19 @@ import org.hibernate.Transaction;
 import static org.hibernate.criterion.Projections.id;
 
 /**
- *
- * @author DELL
+ * Esta clase se encarga de realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en la tabla "multa" de la base de datos.
+ * Además, proporciona un método para obtener todas las multas de la base de datos.
+ * @author Arian Gastelum
  */
+
+
+
 public class MultaDAO {
+    
+    /**
+     * Este método devuelve una lista con todas las multas almacenadas en la base de datos.
+     * @return una lista con todas las multas almacenadas en la base de datos.
+     */
     public static List<Multa> obtenerTodos() {
         List<Multa> multas = new ArrayList<>();
         try {
@@ -36,7 +42,15 @@ public class MultaDAO {
         return multas;
     }
     
-    
+    /**
+     * Este método guarda una multa en la base de datos.
+     * @param folio el folio de la multa.
+     * @param motivo el motivo de la multa.
+     * @param fecha la fecha en la que se impuso la multa.
+     * @param conductor el conductor que recibió la multa.
+     * @param oficial el oficial que impuso la multa.
+     * @return true si la multa se guardó correctamente, false si no.
+     */
 public static boolean guardarMulta(String folio, String motivo, Date fecha, Conductor conductor, Oficial oficial){
     boolean resultado = false;    
     try{
@@ -60,6 +74,12 @@ public static boolean guardarMulta(String folio, String motivo, Date fecha, Cond
     }
     return resultado;
     }
+
+   /**
+     * Este método elimina una multa de la base de datos a partir de su id.
+     * @param idMulta el id de la multa a eliminar.
+     * @return true si la multa se eliminó correctamente, false si no.
+     */
 public static boolean eliminarMulta(int idMulta) {
      boolean resultado = false;
         try{
@@ -77,6 +97,17 @@ public static boolean eliminarMulta(int idMulta) {
         }
         return resultado;
     }
+/**
+ * Actualiza los datos de una multa existente en la base de datos.
+ * 
+ * @param idMulta   El identificador único de la multa a editar.
+ * @param folio     El nuevo folio de la multa.
+ * @param motivo    El nuevo motivo de la multa.
+ * @param fecha     La nueva fecha en que se emitió la multa.
+ * @param conductor El nuevo conductor asociado a la multa.
+ * @param oficial   El nuevo oficial que emitió la multa.
+ * @return          true si la multa fue actualizada exitosamente, false en caso contrario.
+ */
 public static boolean editarMulta(int idMulta, String folio, String motivo, Date fecha, Conductor conductor, Oficial oficial) {
     boolean resultado = false;
     try {
